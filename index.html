@@ -36,9 +36,23 @@
     تعزيز الامتثال المهني والسلوك القانوني
 </p>
 
-<a href="report.html" class="enter-btn">
-    اضغط للدخول
-</a>
+<div class="login-box">
+
+    <input
+        type="password"
+        id="passwordInput"
+        class="password-input"
+        placeholder="أدخل كلمة المرور">
+
+    <button class="enter-btn" onclick="checkPassword()">
+        اضغط للدخول
+    </button>
+
+    <div id="errorMessage" class="error-message">
+        كلمة المرور غير صحيحة
+    </div>
+
+</div>
 ```
 
 </div>
