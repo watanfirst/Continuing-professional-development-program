@@ -33,6 +33,11 @@ title="ملخص-الشركة"
 src="https://app.powerbi.com/view?r=eyJrIjoiMmUxMTk0MDQtNjZmMS00MjE0LTgxMzUtMGIzYWMyYmQ1MzAyIiwidCI6ImM3YmNkYzYzLTI4M2MtNDk5OC05NTk0LTQ1NTM5MzNlNGQ1YiIsImMiOjl9"
 allowfullscreen>
 </iframe>
+<script>
+window.addEventListener("beforeunload", function () {
+    sessionStorage.removeItem("authenticated");
+});
+</script>
 
 </body>
 </html>
