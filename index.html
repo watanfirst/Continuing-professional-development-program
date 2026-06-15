@@ -127,19 +127,17 @@ window.addEventListener('resize', resize);
 
 <!-- ADD THE PASSWORD SCRIPT HERE -->
 <script>
-function checkPassword(){
+function checkPassword() {
 
-    const password =
-        document.getElementById("passwordInput").value;
+    const password = document.getElementById("passwordInput").value;
+    const error = document.getElementById("errorMessage");
 
-    const error =
-        document.getElementById("errorMessage");
+    if (password === "Watan@12345") {
 
-    if(password === "Watan@12345"){
-
+        sessionStorage.setItem("authenticated", "true");
         window.location.href = "report.html";
 
-    }else{
+    } else {
 
         error.style.display = "block";
 
