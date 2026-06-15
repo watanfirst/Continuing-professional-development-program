@@ -106,7 +106,59 @@ resize();
 animate();
 
 window.addEventListener('resize', resize);
+...
+
+<script>
+const canvas = document.getElementById('stars');
+const ctx = canvas.getContext('2d');
+
+let width, height;
+let stars = [];
+
+// Your existing animation code
+function resize() {
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
+}
+
+resize();
+window.addEventListener('resize', resize);
+</script>
+
+<!-- ADD THE PASSWORD SCRIPT HERE -->
+<script>
+function checkPassword(){
+
+    const password =
+        document.getElementById("passwordInput").value;
+
+    const error =
+        document.getElementById("errorMessage");
+
+    if(password === "Watan@12345"){
+
+        window.location.href = "report.html";
+
+    }else{
+
+        error.style.display = "block";
+
+        setTimeout(() => {
+            error.style.display = "none";
+        }, 3000);
+    }
+}
+
+document.getElementById("passwordInput")
+.addEventListener("keypress", function(event){
+
+    if(event.key === "Enter"){
+        checkPassword();
+    }
+});
 </script>
 
 </body>
 </html>
+
+
