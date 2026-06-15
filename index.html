@@ -1,16 +1,21 @@
 <!DOCTYPE html>
 
 <html lang="ar" dir="rtl">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>برنامج التطوير المهني المستمر</title>
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>برنامج التطوير المهني المستمر</title>
+
+```
 <link rel="stylesheet" href="style.css">
+```
+
 </head>
 
 <body>
 
+```
 <canvas id="stars"></canvas>
 
 <div class="orbit orbit1"></div>
@@ -19,144 +24,129 @@
 
 <div class="content">
 
-```
-<div class="subtitle">
-    معهد وطن الأول
-</div>
+    <div class="subtitle">
+        معهد وطن الأول
+    </div>
 
-<h1>
-    برنامج التطوير المهني المستمر
-</h1>
+    <h1>
+        برنامج التطوير المهني المستمر
+    </h1>
 
-<p>
-    بناء منظومة وطنية للتطوير المهني المستمر للمحامين
-    <br>
-    رفع كفاءة وجودة الممارسة القانونية
-    <br>
-    تعزيز الامتثال المهني والسلوك القانوني
-</p>
+    <p>
+        بناء منظومة وطنية للتطوير المهني المستمر للمحامين
+        <br>
+        رفع كفاءة وجودة الممارسة القانونية
+        <br>
+        تعزيز الامتثال المهني والسلوك القانوني
+    </p>
 
-<div class="login-box">
+    <div class="login-box">
 
-    <input
-        type="password"
-        id="passwordInput"
-        class="password-input"
-        placeholder="أدخل كلمة المرور">
+        <input
+            type="password"
+            id="passwordInput"
+            class="password-input"
+            placeholder="أدخل كلمة المرور">
 
-    <button class="enter-btn" onclick="checkPassword()">
-        اضغط للدخول
-    </button>
+        <button class="enter-btn" onclick="checkPassword()">
+            اضغط للدخول
+        </button>
 
-    <div id="errorMessage" class="error-message">
-        كلمة المرور غير صحيحة
+        <div id="errorMessage" class="error-message">
+            كلمة المرور غير صحيحة
+        </div>
+
     </div>
 
 </div>
+
+<script>
+
+    // Remove previous authentication whenever login page loads
+    sessionStorage.removeItem("authenticated");
+
+    const canvas = document.getElementById('stars');
+    const ctx = canvas.getContext('2d');
+
+    let width, height;
+    let stars = [];
+
+    function resize() {
+
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+
+        stars = [];
+
+        for (let i = 0; i < 200; i++) {
+
+            stars.push({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                r: Math.random() * 1.5,
+                speed: Math.random() * 0.5 + 0.1
+            });
+        }
+    }
+
+    function animate() {
+
+        ctx.clearRect(0, 0, width, height);
+
+        stars.forEach(star => {
+
+            ctx.beginPath();
+            ctx.arc(star.x, star.y, star.r, 0, Math.PI * 2);
+            ctx.fillStyle = "rgba(255,255,255,0.8)";
+            ctx.fill();
+
+            star.y -= star.speed;
+
+            if (star.y < 0) {
+                star.y = height;
+                star.x = Math.random() * width;
+            }
+        });
+
+        requestAnimationFrame(animate);
+    }
+
+    resize();
+    animate();
+
+    window.addEventListener('resize', resize);
+
+    function checkPassword() {
+
+        const password = document.getElementById("passwordInput").value;
+        const error = document.getElementById("errorMessage");
+
+        if (password === "Watan@12345") {
+
+            sessionStorage.setItem("authenticated", "true");
+            window.location.href = "report.html";
+
+        } else {
+
+            error.style.display = "block";
+
+            setTimeout(() => {
+                error.style.display = "none";
+            }, 3000);
+        }
+    }
+
+    document.getElementById("passwordInput")
+        .addEventListener("keydown", function (event) {
+
+            if (event.key === "Enter") {
+                checkPassword();
+            }
+        });
+
+</script>
 ```
 
-</div>
-
-<script>
-const canvas = document.getElementById('stars');
-const ctx = canvas.getContext('2d');
-
-let width, height;
-let stars = [];
-
-function resize() {
-    width = canvas.width = window.innerWidth;
-    height = canvas.height = window.innerHeight;
-
-    stars = [];
-
-    for(let i = 0; i < 200; i++) {
-        stars.push({
-            x: Math.random() * width,
-            y: Math.random() * height,
-            r: Math.random() * 1.5,
-            speed: Math.random() * 0.5 + 0.1
-        });
-    }
-}
-
-function animate() {
-
-    ctx.clearRect(0,0,width,height);
-
-    stars.forEach(star => {
-
-        ctx.beginPath();
-        ctx.arc(star.x, star.y, star.r, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(255,255,255,0.8)";
-        ctx.fill();
-
-        star.y -= star.speed;
-
-        if(star.y < 0){
-            star.y = height;
-            star.x = Math.random() * width;
-        }
-    });
-
-    requestAnimationFrame(animate);
-}
-
-resize();
-animate();
-
-window.addEventListener('resize', resize);
-
-
-<script>
-const canvas = document.getElementById('stars');
-const ctx = canvas.getContext('2d');
-
-let width, height;
-let stars = [];
-
-// Your existing animation code
-function resize() {
-    width = canvas.width = window.innerWidth;
-    height = canvas.height = window.innerHeight;
-}
-
-resize();
-window.addEventListener('resize', resize);
-</script>
-
-<!-- ADD THE PASSWORD SCRIPT HERE -->
-<script>
-function checkPassword() {
-
-    const password = document.getElementById("passwordInput").value;
-    const error = document.getElementById("errorMessage");
-
-    if (password === "Watan@12345") {
-
-        sessionStorage.setItem("authenticated", "true");
-        window.location.href = "report.html";
-
-    } else {
-
-        error.style.display = "block";
-
-        setTimeout(() => {
-            error.style.display = "none";
-        }, 3000);
-    }
-}
-
-document.getElementById("passwordInput")
-.addEventListener("keypress", function(event){
-
-    if(event.key === "Enter"){
-        checkPassword();
-    }
-});
-</script>
-
 </body>
+
 </html>
-
-
